@@ -5,12 +5,12 @@
  * 2. Envoyez un mail avec ces informations, si certaines choses manquent, complétez
  * 3. Déployez sur votre serveur et testez !
  */
-
-$from = '';
-$to = '';
+$from = 'victorien.bail@gmail.com';
+$subject = 'Mon super mail';
+$to = 'deadvicmangame@gmail.com';
 $message = 'Hello World, sending a simple mail !';
 // TODO Votre code ici.
-
+mail($to, $subject, $message, $from);
 
 /**
  * 4. Commentez le code précédent, mais gardez les variables $from et $to
@@ -24,3 +24,13 @@ $message = 'Hello World, sending a simple mail !';
  *     N'écrasez pas les valeurs déjà existantes ( s'il y en a ).
  */
 // TODO Votre code ici.
+$message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada, magna ut feugiat congue, est purus congue magna, id tincidunt elit magna non metus. Donec auctor, magna eu egestas suscipit, sapien eros congue ligula, at suscipit augue massa id magna.";
+$message = wordwrap($message, 70);
+if (mail($to, $subject, $message)) {
+    echo "Le message a bien été envoyé. Merci !";
+    $file=fopen("mails.txt","a");
+    fwrite($file,"$message $to");
+    fclose($file);
+} else {
+    echo "Une erreur est survenue lors de l'envoi du mail";
+}
